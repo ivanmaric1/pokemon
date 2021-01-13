@@ -1,0 +1,23 @@
+.Menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  margin: 1vh 12vw;
+
+  &-logo {
+    height: 80px;
+  }
+
+  &-list {
+    font-size: 1.2rem;
+    a {
+      text-decoration: none;
+      margin: 0 2rem;
+    }
+  }
+
+  &-active {
+    color: red;
+  }
+}

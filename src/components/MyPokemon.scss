@@ -1,3 +1,17 @@
 .MyPokemon {
   margin: 0 12vw;
+  &-render {
+    &-pokemons {
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem;
+    }
+
+    &-loader {
+      display: flex;
+      justify-content: center;
+      margin: 25vh 0;
+    }
+  }
 }

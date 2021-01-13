@@ -1,0 +1,13 @@
+.Footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100px;
+  background-color: gray;
+  color: #87eac5;
+  margin-top: 50px;
+
+  &-logo {
+    height: 40px;
+  }
+}

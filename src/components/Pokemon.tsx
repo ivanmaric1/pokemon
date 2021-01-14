@@ -13,6 +13,7 @@ interface Pokemon {
   stats: any;
   moves: any;
   addToMyPokemon: (id: string) => void;
+  removeFromMyPokemon: (id: string) => void;
 }
 
 const Pokemon: React.FC<Pokemon> = ({
@@ -26,8 +27,20 @@ const Pokemon: React.FC<Pokemon> = ({
   stats,
   moves,
   addToMyPokemon,
+  removeFromMyPokemon,
 }) => {
   const [info, setInfo] = useState('about');
+  const [inMyPokemon, setInMyPokemon] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('mypokemon')) {
+      const localS: any = localStorage.getItem('mypokemon');
+      const mypokemons = JSON.parse(localS);
+      if (mypokemons.includes(id)) {
+        setInMyPokemon(true);
+      }
+    }
+  });
 
   useEffect(() => {
     renderContent();
@@ -107,15 +120,27 @@ const Pokemon: React.FC<Pokemon> = ({
         <p>type : {type}</p>
       </div>
       <div className="Pokemon-card-side Pokemon-card-side-back">
-        <div>
-          <ul className="Pokemon-card-menu">
-            <li onClick={() => setInfo('about')}>About</li>
-            <li onClick={() => setInfo('stats')}>Stats</li>
-            <li onClick={() => setInfo('moves')}>Moves</li>
-          </ul>
-          <div>{renderContent()}</div>
-          <button onClick={() => addToMyPokemon(id)}>Add to My Pokemon</button>
-        </div>
+        <ul className="Pokemon-card-menu">
+          <li onClick={() => setInfo('about')}>About</li>
+          <li onClick={() => setInfo('stats')}>Stats</li>
+          <li onClick={() => setInfo('moves')}>Moves</li>
+        </ul>
+        <div>{renderContent()}</div>
+        {inMyPokemon ? (
+          <button
+            className="Pokemon-card-btn"
+            onClick={() => removeFromMyPokemon(id)}
+          >
+            Remove From My Pokemon
+          </button>
+        ) : (
+          <button
+            className="Pokemon-card-btn"
+            onClick={() => addToMyPokemon(id)}
+          >
+            Add to My Pokemon
+          </button>
+        )}
       </div>
     </div>
   );

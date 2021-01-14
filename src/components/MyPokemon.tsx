@@ -1,70 +1,105 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import SearchAndSort from './SearchAndSort';
 import Loader from './Loader';
 import Pokemon from './Pokemon';
 import './MyPokemon.scss';
 
-const MyPokemon = () => {
-  const [myPokemons, setMyPokemons] = useState([]);
+interface State {
+  myPokemons: any;
+  dataLoaded: boolean;
+  filter: string;
+}
 
-  useEffect(() => {
+class MyPokemon extends Component<{}, State> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      myPokemons: [],
+      dataLoaded: false,
+      filter: '',
+    };
+  }
+
+  componentDidMount() {
+    const pokemons: any = [];
     if (localStorage.getItem('mypokemon')) {
-      const dataFromServer: any = [];
-      const storageData: any = localStorage.getItem('mypokemon');
-      const collection = JSON.parse(storageData);
-      collection.forEach((pokemon: string) => {
-        axios(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon}`
-        ).then((data: any) => dataFromServer.push(data.data));
+      const localS: any = localStorage.getItem('mypokemon');
+      const mypokemons = JSON.parse(localS);
+      mypokemons.forEach((pokemon: any) => {
+        axios(`https://pokeapi.co/api/v2/pokemon/${pokemon}`).then((res) =>
+          pokemons.push(res.data)
+        );
       });
-      setMyPokemons(dataFromServer);
     }
-  }, []);
+    setTimeout(() => {
+      this.setState({ myPokemons: pokemons, dataLoaded: true });
+    }, 300);
+  }
 
-  const addToMyPokemon = (id: string) => {
-    if (!localStorage.getItem('mypokemon')) {
-      localStorage.setItem('mypokemon', JSON.stringify([id]));
-    } else {
-      const storageData: any = localStorage.getItem('mypokemon');
-      const collection = JSON.parse(storageData);
-      collection.push(id);
-      localStorage.setItem('mypokemon', JSON.stringify(collection));
-    }
+  addToMyPokemon = (id: string) => {
+    console.log('fake');
+  };
+  removeFromMyPokemon = (id: string) => {
+    const storageData: any = localStorage.getItem('mypokemon');
+    const collection = JSON.parse(storageData).filter(
+      (pokemon: any) => pokemon !== id
+    );
+    localStorage.setItem('mypokemon', JSON.stringify(collection));
+    window.location.reload(false);
   };
 
-  const renderMyPokemons = () => {
+  changeFilter = (str: string) => {
+    this.setState({ filter: str });
+  };
+
+  renderMyPokemons = () => {
     let pokemonsForRender: any = [];
-    myPokemons.forEach((pokemon: any) => {
-      pokemonsForRender
-        .push
-        // <Pokemon
-        //   name={pokemon.name}
-        //   type={pokemon.types[0].type.name}
-        //   img={pokemon.sprites.front_default}
-        //   id={pokemon.id}
-        //   key={pokemon.id}
-        //   addToMyPokemon={addToMyPokemon}
-        // />
-        ();
+    this.state.myPokemons.forEach((pokemon: any) => {
+      pokemonsForRender.push(
+        <Pokemon
+          name={pokemon.name}
+          type={pokemon.types[0].type.name}
+          img={pokemon.sprites.front_default}
+          id={pokemon.id}
+          key={pokemon.id}
+          height={pokemon.height}
+          weight={pokemon.weight}
+          exp={pokemon.base_experience}
+          addToMyPokemon={this.addToMyPokemon}
+          removeFromMyPokemon={this.removeFromMyPokemon}
+          stats={pokemon.stats}
+          moves={pokemon.moves}
+        />
+      );
     });
+
+    if (this.state.filter) {
+      pokemonsForRender = pokemonsForRender.filter((item: any) =>
+        item.props.name.toLowerCase().includes(this.state.filter.toLowerCase())
+      );
+    }
     return pokemonsForRender;
   };
 
-  return (
-    <div className="MyPokemon">
-      <SearchAndSort />
-      <div className="MyPokemon-render">
-        {myPokemons ? (
-          <div className="MyPokemon-render-pokemons">{renderMyPokemons()}</div>
-        ) : (
-          <div className="MyPokemon-render-loader">
-            <Loader />
-          </div>
-        )}
+  render() {
+    return (
+      <div className="MyPokemon">
+        <SearchAndSort changeFilter={this.changeFilter} />
+        <div className="MyPokemon-render">
+          {this.state.dataLoaded ? (
+            <div className="MyPokemon-render-pokemons">
+              {this.renderMyPokemons()}
+            </div>
+          ) : (
+            <div className="MyPokemon-render-loader">
+              <Loader />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default MyPokemon;

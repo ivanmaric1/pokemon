@@ -1,0 +1,20 @@
+.Search {
+  input {
+    border: none;
+    background-color: #ffcb05;
+    color: #3169b1;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    transition: all 0.4s ease-in;
+
+    &:active,
+    &:focus {
+      outline: none;
+      background-color: lighten($color: #ffcb05, $amount: 30%);
+    }
+  }
+}
+::placeholder {
+  color: #3169b1;
+}

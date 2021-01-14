@@ -20,4 +20,14 @@
   &-active {
     color: red;
   }
+
+  &-counter {
+    background-color: red;
+    color: #ffcb05;
+    padding: 0 0.2rem;
+    border-radius: 10px;
+    position: relative;
+    bottom: 1rem;
+    font-size: 1rem;
+  }
 }

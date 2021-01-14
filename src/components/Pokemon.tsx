@@ -4,6 +4,7 @@ import './Pokemon.scss';
 
 interface Pokemon {
   name: string;
+  order: number;
   img: string;
   type: string;
   id: string;
@@ -18,6 +19,7 @@ interface Pokemon {
 
 const Pokemon: React.FC<Pokemon> = ({
   name,
+  order,
   type,
   img,
   id,
@@ -51,16 +53,24 @@ const Pokemon: React.FC<Pokemon> = ({
       return (
         <table className="About">
           <tr>
-            <td>Base Experience</td>
-            <td>{exp}</td>
+            <td>Name:</td>
+            <td className="About-bold">{name}</td>
           </tr>
           <tr>
-            <td>Heihgt</td>
-            <td>{height}</td>
+            <td>Order:</td>
+            <td className="About-bold">{order}</td>
           </tr>
           <tr>
-            <td>Weihgt</td>
-            <td>{weight}</td>
+            <td>Base Exp:</td>
+            <td className="About-bold">{exp}</td>
+          </tr>
+          <tr>
+            <td>Heihgt:</td>
+            <td className="About-bold">{height}</td>
+          </tr>
+          <tr>
+            <td>Weihgt:</td>
+            <td className="About-bold">{weight}</td>
           </tr>
         </table>
       );

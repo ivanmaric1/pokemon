@@ -9,6 +9,15 @@
   z-index: 5;
   background-color: #fff;
   top: 0;
+  box-shadow: 0 0 0.5rem #3169b1;
 }
 
-// ffcb05 - yellow
+@media screen and (min-width: 200px) and (max-width: 900px) {
+  .SearchAndSort {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    position: relative;
+  }
+}

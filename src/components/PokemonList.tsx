@@ -10,6 +10,9 @@ interface State {
   pokemons: any;
   dataLoaded: boolean;
   filter: string;
+  sortAbc: string;
+  sortType: string;
+  sortBest: string;
 }
 
 class PokemonList extends Component<{}, State> {
@@ -19,6 +22,9 @@ class PokemonList extends Component<{}, State> {
       pokemons: [],
       dataLoaded: false,
       filter: '',
+      sortAbc: '',
+      sortType: '',
+      sortBest: '',
     };
   }
 
@@ -52,11 +58,22 @@ class PokemonList extends Component<{}, State> {
 
   removeFromMyPokemon = (id: string) => {
     const storageData: any = localStorage.getItem('mypokemon');
-    const collection = JSON.parse(storageData);
-    console.log(storageData);
-    collection.filter((pokemon: any) => pokemon !== id);
+    const collection = JSON.parse(storageData).filter(
+      (pokemon: any) => pokemon !== id
+    );
     localStorage.setItem('mypokemon', JSON.stringify(collection));
     window.location.reload(false);
+  };
+
+  setFilterSort = (str: string) => {
+    this.setState({ sortAbc: str });
+  };
+
+  setFilterType = (str: string) => {
+    this.setState({ sortType: str });
+  };
+  setFilterBest = (str: string) => {
+    this.setState({ sortBest: str });
   };
 
   renderPokemons = () => {
@@ -77,9 +94,70 @@ class PokemonList extends Component<{}, State> {
             removeFromMyPokemon={this.removeFromMyPokemon}
             stats={pokemon.stats}
             moves={pokemon.moves}
+            order={pokemon.order}
           />
         );
       });
+    }
+    pokemonsForRender = pokemonsForRender.sort((a: any, b: any) =>
+      a.props.name.localeCompare(b.props.name)
+    );
+
+    if (this.state.sortAbc) {
+      if (this.state.sortAbc === 'az') {
+        pokemonsForRender = pokemonsForRender.sort((a: any, b: any) =>
+          a.props.name.localeCompare(b.props.name)
+        );
+      } else {
+        pokemonsForRender = pokemonsForRender.sort((a: any, b: any) =>
+          b.props.name.localeCompare(a.props.name)
+        );
+      }
+    }
+
+    if (this.state.sortType) {
+      pokemonsForRender = pokemonsForRender.filter(
+        (item: any) => item.props.type === this.state.sortType
+      );
+    }
+
+    if (this.state.sortBest) {
+      if (this.state.sortBest === 'hp') {
+        pokemonsForRender = pokemonsForRender.sort(
+          (a: any, b: any) =>
+            b.props.stats[0].base_stat - a.props.stats[0].base_stat
+        );
+      }
+      if (this.state.sortBest === 'attack') {
+        pokemonsForRender = pokemonsForRender.sort(
+          (a: any, b: any) =>
+            b.props.stats[1].base_stat - a.props.stats[1].base_stat
+        );
+      }
+      if (this.state.sortBest === 'defense') {
+        pokemonsForRender = pokemonsForRender.sort(
+          (a: any, b: any) =>
+            b.props.stats[2].base_stat - a.props.stats[2].base_stat
+        );
+      }
+      if (this.state.sortBest === 'specialA') {
+        pokemonsForRender = pokemonsForRender.sort(
+          (a: any, b: any) =>
+            b.props.stats[3].base_stat - a.props.stats[3].base_stat
+        );
+      }
+      if (this.state.sortBest === 'specialB') {
+        pokemonsForRender = pokemonsForRender.sort(
+          (a: any, b: any) =>
+            b.props.stats[4].base_stat - a.props.stats[4].base_stat
+        );
+      }
+      if (this.state.sortBest === 'speed') {
+        pokemonsForRender = pokemonsForRender.sort(
+          (a: any, b: any) =>
+            b.props.stats[5].base_stat - a.props.stats[5].base_stat
+        );
+      }
     }
 
     if (this.state.filter) {
@@ -94,7 +172,12 @@ class PokemonList extends Component<{}, State> {
   render() {
     return (
       <div className="PokemonList">
-        <SearchAndSort changeFilter={this.changeFilter} />
+        <SearchAndSort
+          changeFilter={this.changeFilter}
+          setFilterSort={this.setFilterSort}
+          setFilterType={this.setFilterType}
+          setFilterBest={this.setFilterBest}
+        />
         <div className="PokemonList-render">
           {this.state.dataLoaded ? (
             <div className="PokemonList-render-pokemons">

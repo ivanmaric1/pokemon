@@ -1,0 +1,18 @@
+.Details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-around;
+  border: 2px solid #3169b1;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  background-color: #fff;
+  top: 0;
+  color: #3169b1;
+  box-shadow: 0 0 0.5rem #3169b1;
+  font-size: 0.8rem;
+
+  table {
+    padding: 1rem;
+  }
+}

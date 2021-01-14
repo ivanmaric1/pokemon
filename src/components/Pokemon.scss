@@ -100,7 +100,20 @@
 .About {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+
+  &-bold {
+    font-weight: 500;
+  }
+  tr {
+    display: flex;
+    justify-content: space-between;
+
+    td {
+      margin: 0 1rem;
+    }
+  }
 }
 
 .Moves {

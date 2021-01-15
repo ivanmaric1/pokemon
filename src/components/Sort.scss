@@ -1,11 +1,12 @@
 .Sort {
   select {
+    z-index: 50;
     border: none;
-    background-color: #3169b1;
-    color: #ffcb05;
+    background-color: var(--main-blue);
+    color: var(--main-yellow);
     padding: 0.5rem 1rem;
     border-radius: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all 0.4s ease-in;
     margin: 0 1rem;
     cursor: pointer;
@@ -25,13 +26,6 @@
 
 @media screen and (min-width: 200px) and (max-width: 900px) {
   .Sort {
-    display: flex;
-
-    select {
-      padding: 0.3rem 1rem;
-      font-size: 1rem;
-      margin: 0;
-      width: auto;
-    }
+    display: none;
   }
 }

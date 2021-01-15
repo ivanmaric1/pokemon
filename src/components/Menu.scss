@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font);
   margin: 1vh 12vw;
 
   &-logo {
@@ -12,19 +12,30 @@
 
   &-list {
     font-size: 1.2rem;
+    padding: 0;
     a {
       text-decoration: none;
-      margin: 0 2rem;
+      margin: 0 1rem;
+
+      &:active,
+      &:focus,
+      &:visited {
+        color: var(--main-blue);
+      }
     }
   }
 
   &-active {
-    color: red;
+    background-color: var(--main-yellow);
+    border-radius: 10px;
+    padding: 0.5rem;
+    border: 2px solid var(--main-blue);
+    box-shadow: 0 0 0.5rem var(--main-blue);
   }
 
   &-counter {
     background-color: red;
-    color: #ffcb05;
+    color: var(--main-yellow);
     padding: 0 0.2rem;
     border-radius: 10px;
     position: relative;
@@ -42,6 +53,17 @@
   }
 }
 
+@media screen and (min-width: 200px) and (max-width: 400px) {
+  .Menu {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+
+    &-list {
+      font-size: 0.8rem;
+    }
+  }
+}
 @media screen and (min-width: 200px) and (max-width: 800px) {
   .Menu {
     flex-direction: column;

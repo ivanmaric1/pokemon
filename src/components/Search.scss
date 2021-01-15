@@ -1,11 +1,11 @@
 .Search {
   input {
     border: none;
-    background-color: #ffcb05;
-    color: #3169b1;
+    background-color: var(--main-yellow);
+    color: var(--main-blue);
     padding: 0.5rem 1rem;
     border-radius: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all 0.4s ease-in;
 
     &:active,
@@ -21,10 +21,12 @@
 
 @media screen and (min-width: 200px) and (max-width: 900px) {
   .Search {
+    display: flex;
+    justify-content: center;
     input {
-      width: 100%;
+      width: 80%;
       padding: 0.3rem 1rem;
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
   }
 }

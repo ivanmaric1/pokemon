@@ -1,23 +1,24 @@
 .SearchAndSort {
   display: flex;
   justify-content: space-around;
-  border: 2px solid #3169b1;
+  border: 2px solid var(--main-blue);
   border-radius: 10px;
   padding: 0.5rem;
   margin: 1rem 0;
   position: sticky;
   z-index: 5;
-  background-color: #fff;
+  background-color: var(--light);
   top: 0;
-  box-shadow: 0 0 0.5rem #3169b1;
+  box-shadow: 0 0 0.5rem var(--main-blue);
+  overflow: auto;
 }
 
 @media screen and (min-width: 200px) and (max-width: 900px) {
   .SearchAndSort {
     flex-direction: column;
-    align-items: center;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
+    align-items: stretch;
+    padding: 0.5rem 0;
+    margin: 0.5rem 2rem;
     position: relative;
   }
 }

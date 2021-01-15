@@ -22,7 +22,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #3169b1;
+    color: var(--main-blue);
     font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 600px) {
+  .MyPokemon {
+    margin: 0;
+
+    &-render {
+      &-pokemons {
+        margin-top: 1rem;
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+      }
+
+      &-loader {
+        margin: 15vh 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .MyPokemon {
+    margin: 0 1rem;
+
+    &-render {
+      &-pokemons {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &-loader {
+        margin: 15vh 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1100px) {
+  .MyPokemon {
+    margin: 0 1rem;
+
+    &-render {
+      &-pokemons {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   }
 }

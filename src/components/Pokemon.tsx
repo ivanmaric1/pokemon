@@ -61,7 +61,7 @@ const Pokemon: React.FC<Pokemon> = ({
             <td className="About-bold">{order}</td>
           </tr>
           <tr>
-            <td>Base Exp:</td>
+            <td>Base Experience:</td>
             <td className="About-bold">{exp}</td>
           </tr>
           <tr>
@@ -79,28 +79,28 @@ const Pokemon: React.FC<Pokemon> = ({
       return (
         <table className="About">
           <tr>
-            <td>HP</td>
-            <td>{stats[0].base_stat}</td>
+            <td>HP:</td>
+            <td className="About-bold">{stats[0].base_stat}</td>
           </tr>
           <tr>
-            <td>Attack</td>
-            <td>{stats[1].base_stat}</td>
+            <td>Attack:</td>
+            <td className="About-bold">{stats[1].base_stat}</td>
           </tr>
           <tr>
-            <td>Defense</td>
-            <td>{stats[2].base_stat}</td>
+            <td>Defense:</td>
+            <td className="About-bold">{stats[2].base_stat}</td>
           </tr>
           <tr>
-            <td>Special Attack</td>
-            <td>{stats[3].base_stat}</td>
+            <td>Special Attack:</td>
+            <td className="About-bold">{stats[3].base_stat}</td>
           </tr>
           <tr>
-            <td>Special Defense</td>
-            <td>{stats[4].base_stat}</td>
+            <td>Special Defense:</td>
+            <td className="About-bold">{stats[4].base_stat}</td>
           </tr>
           <tr>
-            <td>Speed</td>
-            <td>{stats[5].base_stat}</td>
+            <td>Speed:</td>
+            <td className="About-bold">{stats[5].base_stat}</td>
           </tr>
         </table>
       );

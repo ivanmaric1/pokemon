@@ -37,7 +37,7 @@ class PokemonList extends Component<{}, State> {
     );
     setTimeout(() => {
       this.setState({ pokemons: pokemons, dataLoaded: true });
-    }, 800);
+    }, 2000);
   }
 
   changeFilter = (str: string) => {
@@ -53,7 +53,7 @@ class PokemonList extends Component<{}, State> {
       collection.push(id);
       localStorage.setItem('mypokemon', JSON.stringify(collection));
     }
-    window.location.reload(false);
+    window.location.reload();
   };
 
   removeFromMyPokemon = (id: string) => {

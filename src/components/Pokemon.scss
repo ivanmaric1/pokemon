@@ -17,14 +17,14 @@
     left: 0;
     width: 100%;
     backface-visibility: hidden;
-    border: 1px solid #3169b1;
+    border: 1px solid var(--main-blue);
     border-radius: 10px;
     box-shadow: 0 0.5rem 1rem gray;
 
     &-front {
-      background-color: white;
+      background-color: var(--light);
       color: #000;
-      box-shadow: 0 0 0.5rem #3169b1;
+      box-shadow: 0 0 0.5rem var(--main-blue);
 
       img {
         height: 80px;
@@ -40,16 +40,17 @@
       box-sizing: border-box;
       color: #000;
       font-size: 0.9rem;
-      border: 1px solid #ffcb05;
-      box-shadow: 0 0 0.5rem #ffcb05;
+      border: 1px solid var(--main-yellow);
+      box-shadow: 0 0 0.5rem var(--main-yellow);
 
       ul {
         margin-top: 0;
         display: flex;
+        justify-content: space-evenly;
         padding: 0;
         width: 100%;
         list-style: none;
-        border-bottom: 2px solid #3169b1;
+        border-bottom: 2px solid var(--main-blue);
         padding-bottom: 0.5rem;
 
         li {
@@ -86,6 +87,7 @@
   }
 
   &-menu {
+    margin-bottom: 0;
     li {
       color: #3169b1;
       transition: all 0.5s;
@@ -120,6 +122,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   p {
-    margin: 0;
+    margin: 0 0.5rem;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 600px) {
+  .Pokemon-card {
+    width: 320px;
   }
 }

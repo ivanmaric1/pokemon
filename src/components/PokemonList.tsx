@@ -4,7 +4,6 @@ import Pokemon from './Pokemon';
 import Loader from './Loader';
 import axios from 'axios';
 import './PokemonList.scss';
-import { stringify } from 'querystring';
 
 interface State {
   pokemons: any;
@@ -40,10 +39,7 @@ class PokemonList extends Component<{}, State> {
     }, 2000);
   }
 
-  changeFilter = (str: string) => {
-    this.setState({ filter: str });
-  };
-
+  //Dodaj u MyPokemon
   addToMyPokemon = (id: string) => {
     if (!localStorage.getItem('mypokemon')) {
       localStorage.setItem('mypokemon', JSON.stringify([id]));
@@ -56,6 +52,7 @@ class PokemonList extends Component<{}, State> {
     window.location.reload();
   };
 
+  //Obriši iz MyPokemon
   removeFromMyPokemon = (id: string) => {
     const storageData: any = localStorage.getItem('mypokemon');
     const collection = JSON.parse(storageData).filter(
@@ -65,13 +62,22 @@ class PokemonList extends Component<{}, State> {
     window.location.reload(false);
   };
 
+  //Promjena search inputa
+  changeFilter = (str: string) => {
+    this.setState({ filter: str });
+  };
+
+  //Promjena selecta po abecedi
   setFilterSort = (str: string) => {
     this.setState({ sortAbc: str });
   };
 
+  //Promjena selecta prema typeu
   setFilterType = (str: string) => {
     this.setState({ sortType: str });
   };
+
+  //Promjena selecta prema najboljim ocjenama
   setFilterBest = (str: string) => {
     this.setState({ sortBest: str });
   };
@@ -102,7 +108,6 @@ class PokemonList extends Component<{}, State> {
     pokemonsForRender = pokemonsForRender.sort((a: any, b: any) =>
       a.props.name.localeCompare(b.props.name)
     );
-
     if (this.state.sortAbc) {
       if (this.state.sortAbc === 'az') {
         pokemonsForRender = pokemonsForRender.sort((a: any, b: any) =>
@@ -114,13 +119,11 @@ class PokemonList extends Component<{}, State> {
         );
       }
     }
-
     if (this.state.sortType) {
       pokemonsForRender = pokemonsForRender.filter(
         (item: any) => item.props.type === this.state.sortType
       );
     }
-
     if (this.state.sortBest) {
       if (this.state.sortBest === 'hp') {
         pokemonsForRender = pokemonsForRender.sort(
@@ -159,13 +162,11 @@ class PokemonList extends Component<{}, State> {
         );
       }
     }
-
     if (this.state.filter) {
       pokemonsForRender = pokemonsForRender.filter((item: any) =>
         item.props.name.toLowerCase().includes(this.state.filter.toLowerCase())
       );
     }
-
     return pokemonsForRender;
   };
 

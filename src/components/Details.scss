@@ -1,12 +1,11 @@
 .Details {
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--main-blue);
-  border-radius: 10px;
   padding: 0.5rem;
   margin: 1rem 0;
+  border: 2px solid var(--main-blue);
+  border-radius: 10px;
   background-color: var(--light);
-  top: 0;
   color: var(--main-blue);
   box-shadow: 0 0 0.5rem var(--main-blue);
   font-size: 0.9rem;
@@ -16,7 +15,7 @@
   &-headline {
     text-align: center;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   &-tables {
@@ -24,20 +23,31 @@
     justify-content: space-evenly;
 
     &-headline {
-      font-size: 1.1rem;
-      text-align: center;
       padding-bottom: 0.5rem;
+      text-align: center;
+      font-size: 1.1rem;
     }
   }
 }
 
+@media screen and (min-width: 200px) and (max-width: 400px) {
+  .Details {
+    margin: 1rem;
+    font-size: 0.6rem;
+
+    &-tables {
+      &-best {
+        display: none;
+      }
+    }
+  }
+}
 @media screen and (min-width: 200px) and (max-width: 900px) {
   .Details {
     margin: 1rem 2rem;
-    font-size: 1.1rem;
+    font-size: 0.7rem;
 
     &-tables {
-      &-average,
       &-best {
         display: none;
       }

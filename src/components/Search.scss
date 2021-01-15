@@ -1,9 +1,9 @@
 .Search {
   input {
+    padding: 0.5rem 1rem;
     border: none;
     background-color: var(--main-yellow);
     color: var(--main-blue);
-    padding: 0.5rem 1rem;
     border-radius: 10px;
     font-size: 1rem;
     transition: all 0.4s ease-in;
@@ -15,6 +15,7 @@
     }
   }
 }
+
 ::placeholder {
   color: #3169b1;
 }

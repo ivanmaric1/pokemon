@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Details.scss';
-import MyPokemon from './MyPokemon';
 
 interface Props {
   myPokemons: any;
@@ -143,7 +142,6 @@ class Details extends Component<Props, State> {
       let speed = 0;
       for (const pokemon of this.props.myPokemons)
         speed += pokemon.stats[5].base_stat;
-
       let hpAverage = (hp / this.props.myPokemons.length).toFixed(2);
       let attackAverage = (attack / this.props.myPokemons.length).toFixed(2);
       let defenseAverage = (defense / this.props.myPokemons.length).toFixed(2);
@@ -178,90 +176,108 @@ class Details extends Component<Props, State> {
   render() {
     return (
       <div className="Details">
-        <h2 className="Details-headline">My Pokemon Stats</h2>
+        <h3 className="Details-headline">MY POKEMON STATS</h3>
         <div className="Details-tables">
           <table className="Details-tables-basic">
-            <tr>
-              <td className="Details-tables-headline">BASIC</td>
-            </tr>
-            <tr>
-              <td>POKEMONS</td>
-              <td>{this.props.myPokemons.length}</td>
-            </tr>
-            <tr>
-              <td>TOTAL BASE EXP</td>
-              <td>{this.state.totalBaseExp}</td>
-            </tr>
-            <tr>
-              <td>AVERAGE BASE EXP</td>
-              <td>{this.state.averageBaseExp}</td>
-            </tr>
-            <tr>
-              <td>AVERAGE HEIGHT</td>
-              <td>{this.state.averageHeight}</td>
-            </tr>
-            <tr>
-              <td>AVERAGE WEIGHT</td>
-              <td>{this.state.averageWeight}</td>
-            </tr>
+            <thead>
+              <tr>
+                <td className="Details-tables-headline">BASIC</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>POKEMONS</td>
+                <td>{this.props.myPokemons.length}</td>
+              </tr>
+              <tr>
+                <td>TOTAL BASE EXP</td>
+                <td>{this.state.totalBaseExp}</td>
+              </tr>
+              <tr>
+                <td>AVERAGE BASE EXP</td>
+                <td>{this.state.averageBaseExp}</td>
+              </tr>
+              <tr>
+                <td>AVERAGE HEIGHT</td>
+                <td>{this.state.averageHeight}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>AVERAGE WEIGHT</td>
+                <td>{this.state.averageWeight}</td>
+              </tr>
+            </tfoot>
           </table>
           <table className="Details-tables-average">
-            <tr>
-              <td className="Details-tables-headline">AVERAGE</td>
-            </tr>
-            <tr>
-              <td>HP </td>
-              <td>{this.state.Ahp}</td>
-            </tr>
-            <tr>
-              <td>ATTACK </td>
-              <td>{this.state.Aattack}</td>
-            </tr>
-            <tr>
-              <td>DEFENSE </td>
-              <td>{this.state.Adefense}</td>
-            </tr>
-            <tr>
-              <td>SPECIAL ATTACK </td>
-              <td>{this.state.AspecialA}</td>
-            </tr>
-            <tr>
-              <td>SPECIAL DEFENSE </td>
-              <td>{this.state.AspecialD}</td>
-            </tr>
-            <tr>
-              <td>SPEED </td>
-              <td>{this.state.Aspeed}</td>
-            </tr>
+            <thead>
+              <tr>
+                <td className="Details-tables-headline">AVERAGE</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HP </td>
+                <td>{this.state.Ahp}</td>
+              </tr>
+              <tr>
+                <td>ATTACK </td>
+                <td>{this.state.Aattack}</td>
+              </tr>
+              <tr>
+                <td>DEFENSE </td>
+                <td>{this.state.Adefense}</td>
+              </tr>
+              <tr>
+                <td>SPECIAL ATTACK </td>
+                <td>{this.state.AspecialA}</td>
+              </tr>
+              <tr>
+                <td>SPECIAL DEFENSE </td>
+                <td>{this.state.AspecialD}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>SPEED </td>
+                <td>{this.state.Aspeed}</td>
+              </tr>
+            </tfoot>
           </table>
           <table className="Details-tables-best">
-            <tr>
-              <td className="Details-tables-headline">BEST POKEMON</td>
-            </tr>
-            <tr>
-              <td> SPEED</td>
-              <td>{this.state.speed}</td>
-            </tr>
-            <tr>
-              <td> ATTACK</td>
-              <td>{this.state.attack}</td>
-            </tr>
-            <tr>
-              <td> DEFENSE</td>
-              <td>{this.state.defense}</td>
-            </tr>
-            <tr>
-              <td> SPECIAL ATTACK</td>
-              <td>{this.state.specialA}</td>
-            </tr>
-            <tr>
-              <td> SPECIAL DEFENSE</td>
-              <td>{this.state.specialD}</td>
-            </tr>
-            <tr>
-              <td> SPEED</td>
-              <td>{this.state.speed}</td>
-            </tr>
+            <thead>
+              <tr>
+                <td className="Details-tables-headline">BEST POKEMON</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> SPEED</td>
+                <td>{this.state.speed}</td>
+              </tr>
+              <tr>
+                <td> ATTACK</td>
+                <td>{this.state.attack}</td>
+              </tr>
+              <tr>
+                <td> DEFENSE</td>
+                <td>{this.state.defense}</td>
+              </tr>
+              <tr>
+                <td> SPECIAL ATTACK</td>
+                <td>{this.state.specialA}</td>
+              </tr>
+              <tr>
+                <td> SPECIAL DEFENSE</td>
+                <td>{this.state.specialD}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td> SPEED</td>
+                <td>{this.state.speed}</td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>

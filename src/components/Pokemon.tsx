@@ -1,4 +1,3 @@
-import { stat } from 'fs';
 import React, { useState, useEffect } from 'react';
 import './Pokemon.scss';
 
@@ -52,56 +51,68 @@ const Pokemon: React.FC<Pokemon> = ({
     if (info === 'about') {
       return (
         <table className="About">
-          <tr>
-            <td>Name:</td>
-            <td className="About-bold">{name}</td>
-          </tr>
-          <tr>
-            <td>Order:</td>
-            <td className="About-bold">{order}</td>
-          </tr>
-          <tr>
-            <td>Base Experience:</td>
-            <td className="About-bold">{exp}</td>
-          </tr>
-          <tr>
-            <td>Heihgt:</td>
-            <td className="About-bold">{height}</td>
-          </tr>
-          <tr>
-            <td>Weihgt:</td>
-            <td className="About-bold">{weight}</td>
-          </tr>
+          <thead>
+            <tr>
+              <td>Name:</td>
+              <td className="About-bold">{name}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Order:</td>
+              <td className="About-bold">{order}</td>
+            </tr>
+            <tr>
+              <td>Base Experience:</td>
+              <td className="About-bold">{exp}</td>
+            </tr>
+            <tr>
+              <td>Heihgt:</td>
+              <td className="About-bold">{height}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Weihgt:</td>
+              <td className="About-bold">{weight}</td>
+            </tr>
+          </tfoot>
         </table>
       );
     }
     if (info === 'stats') {
       return (
         <table className="About">
-          <tr>
-            <td>HP:</td>
-            <td className="About-bold">{stats[0].base_stat}</td>
-          </tr>
-          <tr>
-            <td>Attack:</td>
-            <td className="About-bold">{stats[1].base_stat}</td>
-          </tr>
-          <tr>
-            <td>Defense:</td>
-            <td className="About-bold">{stats[2].base_stat}</td>
-          </tr>
-          <tr>
-            <td>Special Attack:</td>
-            <td className="About-bold">{stats[3].base_stat}</td>
-          </tr>
-          <tr>
-            <td>Special Defense:</td>
-            <td className="About-bold">{stats[4].base_stat}</td>
-          </tr>
-          <tr>
-            <td>Speed:</td>
-            <td className="About-bold">{stats[5].base_stat}</td>
-          </tr>
+          <thead>
+            <tr>
+              <td>HP:</td>
+              <td className="About-bold">{stats[0].base_stat}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Attack:</td>
+              <td className="About-bold">{stats[1].base_stat}</td>
+            </tr>
+            <tr>
+              <td>Defense:</td>
+              <td className="About-bold">{stats[2].base_stat}</td>
+            </tr>
+            <tr>
+              <td>Special Attack:</td>
+              <td className="About-bold">{stats[3].base_stat}</td>
+            </tr>
+            <tr>
+              <td>Special Defense:</td>
+              <td className="About-bold">{stats[4].base_stat}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Speed:</td>
+              <td className="About-bold">{stats[5].base_stat}</td>
+            </tr>
+          </tfoot>
         </table>
       );
     }

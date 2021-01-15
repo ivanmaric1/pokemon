@@ -23,7 +23,6 @@ const Menu = () => {
       <NavLink exact to="/">
         <img src={logo} alt="Logo" className="Menu-logo" />
       </NavLink>
-
       <ul className="Menu-list">
         <NavLink exact to="/" activeClassName="Menu-active">
           Pokemon List

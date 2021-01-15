@@ -44,9 +44,20 @@ class MyPokemon extends Component<{}, State> {
     }, 300);
   }
 
+  //Dodaj u MyPokemon
   addToMyPokemon = (id: string) => {
-    console.log('fake');
+    if (!localStorage.getItem('mypokemon')) {
+      localStorage.setItem('mypokemon', JSON.stringify([id]));
+    } else {
+      const storageData: any = localStorage.getItem('mypokemon');
+      const collection = JSON.parse(storageData);
+      collection.push(id);
+      localStorage.setItem('mypokemon', JSON.stringify(collection));
+    }
+    window.location.reload();
   };
+
+  //Obriši iz MyPokemon
   removeFromMyPokemon = (id: string) => {
     const storageData: any = localStorage.getItem('mypokemon');
     const collection = JSON.parse(storageData).filter(
@@ -56,16 +67,22 @@ class MyPokemon extends Component<{}, State> {
     window.location.reload(false);
   };
 
+  //Promjena search inputa
   changeFilter = (str: string) => {
     this.setState({ filter: str });
   };
 
+  //Promjena selecta po abecedi
   setFilterSort = (str: string) => {
     this.setState({ sortAbc: str });
   };
+
+  //Promjena selecta prema typeu
   setFilterType = (str: string) => {
     this.setState({ sortType: str });
   };
+
+  //Promjena selecta prema najboljim ocjenama
   setFilterBest = (str: string) => {
     this.setState({ sortBest: str });
   };
@@ -96,7 +113,6 @@ class MyPokemon extends Component<{}, State> {
     pokemonsForRender = pokemonsForRender.sort((a: any, b: any) =>
       a.props.name.localeCompare(b.props.name)
     );
-
     if (this.state.sortAbc) {
       if (this.state.sortAbc === 'az') {
         pokemonsForRender = pokemonsForRender.sort((a: any, b: any) =>
@@ -108,13 +124,11 @@ class MyPokemon extends Component<{}, State> {
         );
       }
     }
-
     if (this.state.sortType) {
       pokemonsForRender = pokemonsForRender.filter(
         (item: any) => item.props.type === this.state.sortType
       );
     }
-
     if (this.state.sortBest) {
       if (this.state.sortBest === 'hp') {
         pokemonsForRender = pokemonsForRender.sort(
@@ -153,13 +167,11 @@ class MyPokemon extends Component<{}, State> {
         );
       }
     }
-
     if (this.state.filter) {
       pokemonsForRender = pokemonsForRender.filter((item: any) =>
         item.props.name.toLowerCase().includes(this.state.filter.toLowerCase())
       );
     }
-
     return pokemonsForRender;
   };
 
